@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addContact } from '../../redux/phonebook/phonebook-actions';
+import { addContact } from '../../redux/phonebook/phonebook-operations';
 import PropTypes from 'prop-types';
 
 import shortid from 'shortid';
@@ -13,13 +13,13 @@ class Form extends Component {
   nameInputId = shortid.generate();
   numberInputId = shortid.generate();
 
-  //============================================  handleChange
+  //=======================  handleChange
   handleChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
-  //============================================  handleSubmitForm
+  //========================  handleSubmitForm
   handleSubmitForm = e => {
     e.preventDefault();
 
@@ -29,12 +29,12 @@ class Form extends Component {
     this.reset();
   };
 
-  //============================================  reset
+  //=========================  reset
   reset = () => {
     this.setState({ name: '', number: '' });
   };
 
-  //============================================  render
+  //=========================  render
   render() {
     return (
       <form className={style.form} onSubmit={this.handleSubmitForm}>

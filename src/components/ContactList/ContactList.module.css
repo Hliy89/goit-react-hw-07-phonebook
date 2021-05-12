@@ -19,7 +19,7 @@
   margin-top: 2px;
   margin-left: 15px;
   cursor: pointer;
-  background-image: url(../../image/madal-close.svg);
+  /* background-image: url('/image/madal-close.svg'); */
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;

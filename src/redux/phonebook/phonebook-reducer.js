@@ -1,47 +1,49 @@
 import { combineReducers } from "redux";
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, deleteContact, changeFilter } from './phonebook-actions';
+import {
+    addContactRequest,
+    addContactSuccess,
+    addContactError,
+    deleteContactRequest,
+    deleteContactSuccess,
+    deleteContactError,
+    changeFilter,
+    fetchContactsRequest,
+    fetchContactsSuccess,
+    fetchContactsError,
+} from './phonebook-actions';
 
 
 const contacts = createReducer([], {
-    [addContact]: (state, {payload}) => [...state, payload],
-    [deleteContact]: (state, {payload}) => state.filter(({ name }) =>
-        name !== payload),
+    [fetchContactsSuccess]: (_, {payload}) => payload,
+    [addContactSuccess]: (state, {payload}) => [...state, payload],
+    [deleteContactSuccess]: (state, {payload}) => state.filter(({ id }) =>
+        id !== payload),
 });
+
+
+const loading = createReducer(false, {
+    [fetchContactsRequest]: () => true,
+    [fetchContactsSuccess]: () => false,
+    [fetchContactsError]: () => false,
+    [addContactRequest]: () => true,
+    [addContactSuccess]: () => false,
+    [addContactError]: () => false,
+    [deleteContactRequest]: () => true,
+    [deleteContactSuccess]: () => false,
+    [deleteContactError]: () => false,
+});
+
 
 const filter = createReducer('', {
     [changeFilter]: (_, { payload }) => payload,
 });
 
 
+
 export default combineReducers({
     contacts,
-    filter
+    filter,
+    loading
 });
 
-
-// ----------------------------------------------------------------------------
-
-// const contacts = (state = [], { type, payload }) => {
-//     switch (type) {
-//         case types.ADD:
-//             return [...state, payload];
-        
-//         case types.DELETE:
-//             return state.filter(({ name }) => name !== payload);
-        
-//         default:
-//             return state;
-//     };
-// };
-
-// const filter = (state = '', {type, payload}) => {
-//     switch (type) {
-//         case actions.changeFilter:
-//             return payload;
-
-       
-//         default:
-//             return state;
-//     }
-// };

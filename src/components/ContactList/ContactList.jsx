@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteContact } from '../../redux/phonebook/phonebook-actions';
+import { deleteContact } from '../../redux/phonebook/phonebook-operations';
 import PropTypes from 'prop-types';
 
 import style from './ContactList.module.css';
@@ -13,7 +13,9 @@ const ContactList = ({ contacts, filter, onDelete }) => {
   const contactElement = filterContacts.map(({ name, number, id }) => (
     <li key={id} className={style.contactListItem}>
       {name}: {number}
-      <span onClick={() => onDelete(name)} className={style.closeButton}></span>
+      <span onClick={() => onDelete(id)} className={style.closeButton}>
+        X
+      </span>
     </li>
   ));
 
@@ -36,7 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDelete: name => dispatch(deleteContact(name)),
+  onDelete: id => dispatch(deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
