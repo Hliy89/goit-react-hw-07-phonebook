@@ -43,12 +43,13 @@ export const addContact = (name, number) => dispatch => {
 
 export const deleteContact = contactId => dispatch => {
     dispatch(deleteContactRequest());
-console.log(contactId);
+
     axios
         .delete(`/contacts/${contactId}`)
         .then(() => dispatch(deleteContactSuccess(contactId)))
         .catch(error => dispatch(deleteContactError(error)));
 };
+
 
 
 // axios

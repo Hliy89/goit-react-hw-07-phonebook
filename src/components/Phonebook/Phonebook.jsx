@@ -4,6 +4,7 @@ import Form from '../Form';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
 import { fetchContactsOperations } from '../../redux/phonebook/phonebook-operations';
+import { getLoading } from '../../redux/phonebook/phonebook-selectors';
 
 import style from './Phonebook.module.css';
 
@@ -31,7 +32,7 @@ class Phonebook extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.phonebooks.loading,
+  isLoading: getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
