@@ -26,7 +26,7 @@ export const fetchContactsOperations = () => async dispatch => {
 }
 
 
-export const addContact = (name, number) => dispatch => {
+export const addContactOperations = (name, number) => dispatch => {
     const contact = { name, number, completed: false };
 
     dispatch(addContactRequest());
@@ -34,14 +34,13 @@ export const addContact = (name, number) => dispatch => {
     axios
         .post('/contacts', contact)
         .then(({ data }) => {
-            console.log(data);
             dispatch(addContactSuccess(data))
         })
         .catch(error => dispatch(addContactError(error)));
 };
 
 
-export const deleteContact = contactId => dispatch => {
+export const deleteContactOperations = contactId => dispatch => {
     dispatch(deleteContactRequest());
 
     axios
